@@ -1,0 +1,31 @@
+package main;
+
+import java.util.Random;
+
+public class Setup {
+	private int gridSize;
+	public void setupHidden(Game game) {
+		gridSize = game.getGridSize();
+		for(int i = 0; i <gridSize; i++) {
+			for(int j = 0; j< gridSize; j++) {
+				if(game.getHidden(i,j)!=-1) {
+					
+					
+				}
+			}
+		}
+		
+	}
+	private void setupBombs(Game game) {
+		
+		Random random = new Random();
+		for(int i = 0; i < game.getBombs(); i++) {
+			
+			int row = random.nextInt(this.gridSize);
+			int col = random.nextInt(this.gridSize);
+			this.hidden[row][col] = -1;
+			countAdjBombs(row,col);
+		}
+		
+	}
+}

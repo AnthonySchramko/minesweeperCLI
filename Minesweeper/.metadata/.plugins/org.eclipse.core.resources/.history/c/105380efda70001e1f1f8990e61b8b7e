@@ -1,0 +1,16 @@
+package main;
+
+public class Setup {
+	public void setupHidden(Game game) {
+		int gridSize = game.getGridSize();
+		for(int i = 0; i <gridSize; i++) {
+			for(int j = 0; j< gridSize; j++) {
+				if(game.getHidden(i,j)!=-1) {
+					
+					
+				}
+			}
+		}
+		
+	}
+}

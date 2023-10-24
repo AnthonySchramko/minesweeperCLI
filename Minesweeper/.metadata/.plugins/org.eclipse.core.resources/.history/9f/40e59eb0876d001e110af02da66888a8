@@ -1,0 +1,21 @@
+package main;
+
+public class Map {
+	private int[][] visible = new int[10][10];
+	private int[][] hidden = new int [10][10];
+	public int[][] getVisible() {
+		return visible;
+	}
+	public void setVisible(int[][] visible) {
+		this.visible = visible;
+	}
+	public int[][] getHidden() {
+		return hidden;
+	}
+	public void setHidden(int[][] hidden) {
+		this.hidden = hidden;
+	}
+	
+	
+	
+}

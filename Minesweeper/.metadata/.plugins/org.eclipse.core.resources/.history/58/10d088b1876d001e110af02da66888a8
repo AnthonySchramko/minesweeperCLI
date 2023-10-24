@@ -1,0 +1,22 @@
+package main;
+
+import java.util.Random;
+
+public class Setup {
+	
+	private int bombs = 10;
+	private int grid = 10;
+	private void generateBombs() {
+		int i = 0;
+		while(i!=bombs) {
+			int row = generateNum();
+			int cols = generateNum();
+			Map.setHidden([row][cols])=-1;
+		}
+		
+	}
+	private  int generateNum() {
+		Random randomNum = new Random();
+		return randomNum.nextInt(grid);
+	}
+}

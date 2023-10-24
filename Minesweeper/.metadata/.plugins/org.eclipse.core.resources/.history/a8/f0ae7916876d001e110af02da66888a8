@@ -1,0 +1,7 @@
+package main;
+
+public class Map {
+	private int[][] visible = new int[10][10];
+	private int[][] hidden = new int [10][10];
+	
+}

@@ -1,0 +1,141 @@
+package main;
+import java.util.Random;
+public class Game {
+	private int bombs = 10;
+	private int gridSize= 10;
+	private int[][] hidden = new int[this.gridSize][this.gridSize];
+	private int[][] visible = new int[this.gridSize][this.gridSize];
+	private boolean gameOver;
+	
+	public boolean isGameOver() {
+		return gameOver;
+	}
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
+	}
+	
+	public void setupHidden() {
+		setupBombs();		
+	}
+	private void setupBombs() {
+		
+		Random random = new Random();
+		for(int i = 0; i < this.bombs; i++) {
+			
+			int row = random.nextInt(this.gridSize);
+			int col = random.nextInt(this.gridSize);
+			this.hidden[row][col] = -1;
+			checkAdjBombs(row,col);
+		}
+		
+	}
+	
+	
+	public void displayHidden() {
+		System.out.print("\t ");
+		for(int i =0; i < gridSize; i ++) {
+			System.out.print(String.format("| %d ", i+1));
+		}
+		System.out.print("| \n");
+		for(int i=0; i < gridSize; i++) {
+			System.out.print(String.format("%d \t | ", i+1));
+			for(int j=0; j<gridSize; j++) {
+				if(this.hidden[i][j]!=-1) {
+					System.out.print(this.hidden[i][j]);
+				}
+				else {
+					System.out.print("■");
+				}
+				System.out.print(" | ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public void setupVisible() {
+		for(int i = 0; i <gridSize; i++) {
+			for (int j = 0; j < gridSize; j++) {
+				this.visible[i][j]=50;
+			}
+		}
+	}
+	public void displayVisible() {
+		System.out.print("\t ");
+		for(int i =0; i < gridSize; i ++) {
+			System.out.print(String.format("| %d ", i+1));
+		}
+		System.out.print("| \n");
+		for(int i=0; i < gridSize; i++) {
+			System.out.print(String.format("%d \t | ", i+1));
+			for(int j=0; j<gridSize; j++) {
+				if(this.hidden[i][j]==-1) {
+					System.out.print("■");
+				}
+				else if (this.visible[i][j] == 50) {
+					System.out.print("■");
+				}
+				else {
+					System.out.print(this.visible[i][j]);
+				}
+				System.out.print(" | ");
+			}
+			System.out.println();
+		}
+	}
+	public void setVisibleFromGuess(int row, int col) {
+		this.visible[row][col] = this.hidden[row][col];
+		if(this.visible[row][col]==-1) {
+			setGameOver(true);
+		}
+		cascade(row,col);
+		displayVisible();
+		
+	}
+	private  void checkAdjBombs(int row, int col) {
+		int tempRow = 0;
+		int tempCol = 0;
+		for(int i = -1; i <=1; i++) {
+			for(int j = -1; j<=1; j++) {
+				tempRow = row+i; 
+				tempCol = col+j;
+				// This try/catch is to catch OOB errors for edge cases when counting bombs (eg, 1,1 will cause errors)
+				// Continue if error happens. 
+				
+				try {
+					if(this.hidden[tempRow][tempCol]!=-1) {
+						this.hidden[tempRow][tempCol]++;
+					}
+				} catch (Exception e2) {
+						
+					continue;
+				}
+				
+								
+			}
+		}
+	}
+	private void cascade(int row, int col) {
+	    if (row < 0 || row >= gridSize || col < 0 || col >= gridSize || visible[row][col] != 0) {
+	        return; // Base case to stop recursion
+	    }
+
+	    visible[row][col] = hidden[row][col];
+
+	    if (hidden[row][col] == 0) {
+	        // Recursively check adjacent cells
+	        for (int i = -1; i <= 1; i++) {
+	            for (int j = -1; j <= 1; j++) {
+	                int tempRow = row + i;
+	                int tempCol = col + j;
+
+	                // Continue with recursion, but avoid the base case
+	                if (tempRow >= 0 && tempRow < gridSize && tempCol >= 0 && tempCol < gridSize) {
+	                    cascade(tempRow, tempCol);
+	                }
+	            }
+	        }
+	    }
+	}
+}
+
+

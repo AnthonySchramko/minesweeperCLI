@@ -1,0 +1,91 @@
+package main;
+
+import java.util.Random;
+
+public class GameSetup {
+	
+	public void setupHidden() {
+		setupBombs();
+		for(int i = 0; i < this.gridSize; i++) {
+			for(int j = 0; j< this.gridSize; j++) {
+				if(this.hidden[i][j]!=-1) {
+					
+					
+				}
+			}
+		}
+		
+	}
+	
+	
+	private  void countAdjBombs(int row, int col) {
+		int tempRow = 0;
+		int tempCol = 0;
+		for(int i = -1; i <=1; i++) {
+			for(int j = -1; j<=1; j++) {
+				tempRow = row+i; 
+				tempCol = col+j;
+				
+				try {
+					if(this.hidden[tempRow][tempCol]!=-1) {
+						this.hidden[tempRow][tempCol]++;
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+					continue;
+				}
+				
+				
+			}
+		}
+	}
+	public void displayVisible() {
+		System.out.print("\t ");
+		for(int i =0; i < gridSize; i ++) {
+			System.out.print(String.format("| %d ", i+1));
+		}
+		System.out.print("| \n");
+		for(int i=0; i < gridSize; i++) {
+			System.out.print(String.format("%d \t | ", i+1));
+			for(int j=0; j<gridSize; j++) {
+				if(this.visible[i][j]!=-1) {
+					System.out.print(this.visible[i][j]);
+				}
+				else {
+					System.out.println("■");
+				}
+				System.out.print(" | ");
+			}
+			System.out.println();
+		}
+	}
+	public void setVisibleFromGuess(int row, int col) {
+		System.out.println("Hidden " + this.hidden[row][col]);
+		this.visible[row][col] = this.hidden[row][col];
+		System.out.println("Visible " + this.visible[row][col]);
+		if(this.visible[row][col]==-1) {
+			setGameOver(true);
+		}
+		
+	}
+	public void displayHidden() {
+		System.out.print("\t ");
+		for(int i =0; i < gridSize; i ++) {
+			System.out.print(String.format("| %d ", i+1));
+		}
+		System.out.print("| \n");
+		for(int i=0; i < gridSize; i++) {
+			System.out.print(String.format("%d \t | ", i+1));
+			for(int j=0; j<gridSize; j++) {
+				if(this.hidden[i][j]!=-1) {
+					System.out.print(this.hidden[i][j]);
+				}
+				else {
+					System.out.print("■");
+				}
+				System.out.print(" | ");
+			}
+			System.out.println();
+		}
+	}
+}

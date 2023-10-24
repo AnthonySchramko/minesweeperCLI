@@ -1,0 +1,18 @@
+package main;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		GameSetup game = new GameSetup();
+		game.displayVisible();
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("\tWelcome to a makeshift Minesweeper!");
+		
+		game.setupHidden();
+	}
+
+}

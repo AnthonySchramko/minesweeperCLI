@@ -1,0 +1,15 @@
+package main;
+
+public class Setup {
+	public void setupHidden() {
+		for(int i = 0; i < gridSize; i++) {
+			for(int j = 0; j< gridSize; j++) {
+				if(hidden[i][j]!=-1) {
+					
+					
+				}
+			}
+		}
+		
+	}
+}

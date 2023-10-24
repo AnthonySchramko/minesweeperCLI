@@ -1,0 +1,11 @@
+package main;
+
+public class Setup {
+	
+	private int bombs = 10;
+	
+	for(int i = 0; i < bombs; i++) {
+		
+	}
+	
+}
