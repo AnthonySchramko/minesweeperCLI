@@ -4,12 +4,16 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
 public class Game {
-	private int bombs = 10;
+	private int bombs = 1;
 	private int gridSize= 10;
 	private int[][] hidden = new int[this.gridSize][this.gridSize];
 	private int[][] visible = new int[this.gridSize][this.gridSize];
 	private boolean gameOver;
-	
+	private Scanner s;
+
+	public Game (Scanner s){
+		this.s = s;
+	}
 	public boolean isGameOver() {
 		return gameOver;
 	}
@@ -156,7 +160,6 @@ public class Game {
 	}
 	
 	private int getValidCoordinate(String axis) {
-		Scanner s = new Scanner(System.in);
 		int coordinate;
 		while(true) {
 			System.out.println("Please enter a new " + axis +" coordinate (1-10): ");
@@ -164,7 +167,7 @@ public class Game {
 			
 			try {
 				coordinate = Integer.parseInt(userInput);
-				if(coordinate >=1 || coordinate <=10) {
+				if(coordinate >=1 && coordinate <=10) {
 					return coordinate;
 					
 				}
@@ -206,10 +209,13 @@ public class Game {
 				}
 			}
 		}
-		return remTiles == 10 || isGameOver();
+		if(remTiles == bombs){
+			setGameOver(true);
+			System.out.println("Congrats, you beat the game!");
+		}
+		return isGameOver();
 	}
 	public boolean askForReplay() {
-		Scanner s = new Scanner(System.in);
 		System.out.println("Do you want to play again? Y/N");
 		String response = s.next().toLowerCase();	
 		return response.equals("y");
