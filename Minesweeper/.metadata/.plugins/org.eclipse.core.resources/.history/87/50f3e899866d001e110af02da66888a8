@@ -1,9 +1,0 @@
-package main;
-
-public class Setup {
-	
-	private int bombs;
-	
-	
-	
-}
