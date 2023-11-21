@@ -92,11 +92,16 @@ public class Game {
 	public void setVisibleFromGuess(int row, int col) {
 		this.visible[row][col] = this.hidden[row][col];
 		if(this.visible[row][col]==-1) {
-			System.out.println("You hit a bomb, so sorry... ");	
+			System.out.println("You hit a bomb, so sorry... ");
 			setGameOver(true);
+			displayHidden();
+			
 		}
-		cascade(row,col);
-		displayVisible();
+		else{
+			cascade(row,col);
+			displayVisible();
+		}
+		
 		
 	}
 	private  void checkAdjBombs(int row, int col) {
@@ -195,8 +200,8 @@ public class Game {
 			int x = getValidCoordinate("X")-1;
 			setVisibleFromGuess(y, x);
 			isGameFinished();
-			
 		}
+
 		
 		
 	}

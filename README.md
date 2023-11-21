@@ -2,10 +2,21 @@
 
 ## Demo & Snippets
 
-- Include hosted link
-- Include images of app if CLI or Client App
+### Game Start:
 
----
+![Game Start](./media/start.png)
+
+### User Guess:
+
+![User Guess](./media/guess.png)
+
+### Hit bomb:
+
+![Game lost](./media/won.png)
+
+### Game won:
+
+![Game won](./media/won.png)
 
 ## Requirements / Purpose
 
@@ -84,10 +95,14 @@ The purpose of this project was to make a working Minesweeper game that can be p
 
 ## Change logs
 
-### 15/10/2023 -
+### 15/10/2023 - Logic fixes
 
 - Fixed winning game logic to actually end when no bombs are remaining
 - Fixed logic for user guesses, wasn't properly specifying if less than the grid size.
+
+### 21/11/2023 - Displays hidden grid when game lost
+
+- Changed setVisibleFromGuess to display the hidden grid when user hits a bomb, so they can see where the bombs were.
 
 ---
 
